@@ -24,3 +24,13 @@ app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, 'public/assets')))
 
 // file storage
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "public/assets"); // users that upload content onto your web will be saved in folder 'public/assets'
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({storage});
