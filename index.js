@@ -8,3 +8,15 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+
+// configerations
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
+dotenv.config()
+const app = express()
+appuse(express.json())
+app.use(helmet())
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
+app.use(morgan("common"))
+app.use(bodyParser.json({ limit: "30mb", extend: true}))
+app.use(bodyParser.urlencoded({ limit: "30mb", extend: true}))
