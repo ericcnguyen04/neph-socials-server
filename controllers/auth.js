@@ -24,7 +24,12 @@ export const register = async (req, res) => {
             picturePath,
             friends
         })
-    } catch (err) {
 
+        // send status of created(201) after created new user
+        const savedUser = await newUser.save()
+        res.status(201).json(savedUser);
+
+    } catch (err) {
+        res.status(500).json({error: err.message});
     }
 }
